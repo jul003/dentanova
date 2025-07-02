@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Toothquest Quiz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-100 font-sans min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <div class="bg-green-500 text-white px-4 py-3 flex items-center justify-between relative shadow">
+    <a href="homepage.html" class="text-sm font-bold bg-white text-green-600 px-3 py-1 rounded z-10">← RETURN</a>
+    <h1 class="absolute left-1/2 transform -translate-x-1/2 font-bold text-lg uppercase">QUIZ</h1>
+    <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center text-green-600 font-bold text-sm z-10">👤</div>
+  </div>
+
+  <!-- Quiz Content -->
+  <div class="flex-grow flex flex-col items-center justify-center px-4 py-8">
+    <div id="quiz-container" class="w-full max-w-xl bg-white p-6 rounded-lg shadow text-center">
+      <!-- Soal dan opsi di-generate lewat JS -->
+    </div>
+    <div id="score-display" class="mt-4 text-lg font-bold text-green-600 hidden">
+      Your Score: <span id="final-score"></span>/8
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "How many times should you brush your teeth every day?",
+        options: ["One Time", "Two Times", "Three Times", "Four Times"],
+        correct: 1 // B. Two Times
+      },
+      {
+        question: "When should you brush your teeth?",
+        options: ["After school only", "Morning and night", "Only after eating candy", "Before eating candy"],
+        correct: 1 // B. Morning and night
+      },
+      {
+        question: "Which way should you move your toothbrush?",
+        options: ["In circles only", "Up and down", "Side to side very fast"],
+        correct: 1 // B. Up and down
+      },
+      {
+        question: "What should you brush?",
+        options: ["Just the front teeth", "All teeth, even the back", "Only the top ones"],
+        correct: 1 // B. All teeth, even the back
+      },
+      {
+        question: "Which one is bad for your teeth?",
+        options: ["Water", "Soda", "Milk"],
+        correct: 1 // B. Soda
+      },
+      {
+        question: "Which is a healthy snack for your teeth?",
+        options: ["Candy", "Candy", "Lollipop"],
+        correct: 1 // (Jawaban memang Candy? Mungkin perlu diganti)
+      },
+      {
+        question: "Who helps you protect your teeth in this adventure?",
+        options: ["Bakterio karies", "Mr. Toothman", "Sodaman"],
+        correct: 1 // B. Mr. Toothman
+      },
+      {
+        question: "What happens if you don’t brush your teeth?",
+        options: ["Your teeth get stronger", "Cavities can appear", "Your teeth will grow faster"],
+        correct: 1 // B. Cavities can appear
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const quizContainer = document.getElementById('quiz-container');
+
+    function loadQuestion() {
+      if (currentQuestion >= questions.length) {
+        showScore();
+        return;
+      }
+
+      const q = questions[currentQuestion];
+      quizContainer.innerHTML = `
+        <h2 class="text-xl font-bold mb-4">${currentQuestion + 1}. ${q.question}</h2>
+        <div class="space-y-2">
+          ${q.options.map((opt, idx) => `
+            <button onclick="selectAnswer(${idx})" class="w-full block bg-blue-100 hover:bg-blue-200 text-left px-4 py-2 rounded">${String.fromCharCode(65+idx)}. ${opt}</button>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function selectAnswer(selected) {
+      const q = questions[currentQuestion];
+      if (selected === q.correct) {
+        score++;
+      }
+      currentQuestion++;
+      loadQuestion();
+    }
+
+    function showScore() {
+      quizContainer.innerHTML = "<h2 class='text-xl font-bold mb-2'>Quiz Completed!</h2><p>Well done!</p>";
+      document.getElementById('final-score').innerText = score;
+      document.getElementById('score-display').classList.remove('hidden');
+    }
+
+    loadQuestion();
+  </script>
+
+</body>
+</html>

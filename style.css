@@ -1,0 +1,255 @@
+/* Basic Reset & Font */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* Or your preferred font */
+    background-color: #f0f2f5; /* Light grey background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Prevent body scroll, let app-container scroll if needed */
+}
+
+.app-container {
+    width: 100%;
+    max-width: 400px; /* Typical mobile width */
+    height: 100vh; /* Full viewport height for mobile view */
+    background: linear-gradient(to bottom, #00c6ff, #0072ff); /* Blue gradient background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Ensures content inside doesn't spill */
+    position: relative; /* For background patterns/images */
+}
+
+/* Background patterns/waves (as seen in image) */
+.app-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('wave_pattern.png'); /* Replace with your wave pattern image */
+    background-size: cover;
+    opacity: 0.2; /* Adjust as needed */
+    z-index: 0;
+}
+
+
+/* Top Bar */
+.top-bar {
+    background-color: #fff;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative; /* For the "15:00" and network icons if you want to replicate them precisely */
+    z-index: 10; /* Above background patterns */
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f2f5;
+    border-radius: 20px;
+    padding: 5px 15px;
+    flex-grow: 1;
+    margin: 0 10px;
+}
+
+.search-bar i {
+    color: #888;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    flex-grow: 1;
+    font-size: 14px;
+    color: #333;
+}
+
+.search-bar input::placeholder {
+    color: #aaa;
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1; /* Takes up remaining space */
+    padding: 20px;
+    overflow-y: auto; /* Enable scrolling for main content if it overflows */
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dentanova-logo {
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+}
+
+.tooth-icon {
+    width: 80px; /* Adjust size as needed */
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.3); /* Translucent background */
+    border-radius: 15px;
+    padding: 5px;
+}
+
+/* Grid Menu */
+.grid-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 20px; /* Space between items */
+    margin-bottom: 40px;
+}
+
+.menu-item {
+    background-color: #fff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+}
+
+.menu-item img {
+    width: 60px; /* Adjust icon size */
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.menu-item span {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+}
+
+.menu-item.highlighted {
+    border: 3px solid #ff4500; /* Orange border for highlighted item */
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3); /* Enhanced shadow for highlighted */
+}
+
+.menu-item.empty {
+    background-color: rgba(255, 255, 255, 0.2); /* Translucent background for empty slots */
+    border: 1px dashed rgba(255, 255, 255, 0.5);
+    box-shadow: none;
+}
+
+/* Promo Section */
+.promo-section {
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Purple/Blue gradient */
+    border-radius: 20px;
+    padding: 25px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* For the superhero tooth image */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.promo-section h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.promo-section p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.superhero-tooth {
+    position: absolute;
+    bottom: -20px; /* Adjust to position correctly */
+    right: -20px; /* Adjust to position correctly */
+    width: 150px; /* Adjust size */
+    height: auto;
+    transform: rotate(10deg); /* Slightly rotate for effect */
+    opacity: 0.9;
+}
+
+/* Bottom Navigation Bar */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    z-index: 10; /* Above main content */
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #aaa;
+    font-size: 12px;
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-item i {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.nav-item.active {
+    color: #0072ff; /* Active color */
+}
+
+.nav-item:hover {
+    color: #0072ff;
+}
+
+/* Responsive adjustments for smaller screens (e.g., very small phones) */
+@media (max-width: 360px) {
+    .grid-menu {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on very small screens */
+    }
+
+    .menu-item img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .promo-section {
+        padding: 15px;
+    }
+
+    .promo-section h2 {
+        font-size: 20px;
+    }
+
+    .promo-section p {
+        font-size: 14px;
+    }
+
+    .superhero-tooth {
+        width: 120px;
+        bottom: -10px;
+        right: -10px;
+    }
+}

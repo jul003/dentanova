@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parent Hub - DENTANOVA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .calendar-day:hover {
+      background-color: #e2e8f0;
+    }
+  </style>
+</head>
+<body class="bg-blue-50 text-gray-900 font-sans">
+
+  <!-- Header -->
+  <div class="bg-green-500 text-white px-4 py-3 flex items-center justify-between shadow relative">
+  <button onclick="window.location.href='homepage.html'" class="text-sm font-bold bg-white text-green-600 px-3 py-1 rounded">← RETURN</button>
+  <h1 class="font-bold text-lg absolute left-1/2 -translate-x-1/2">Parent Hub</h1>
+  <div class="w-6 h-6 rounded-full bg-white flex items-center justify-center text-green-600 font-bold">👤</div>
+</div>
+
+
+  <!-- Profile Section -->
+  <section class="flex flex-col items-center py-4">
+    <div class="w-60 h-60 rounded-full overflow-hidden shadow relative">
+  <img src="img/diva.jpg" class="absolute inset-0 w-full h-full object-cover object-center" />
+</div>
+
+
+
+
+    <h2 class="text-lg font-bold mt-2">Diva Veronica</h2>
+
+    <!-- Tabs -->
+    <div class="flex gap-4 mt-4">
+  <button id="calendar-btn" onclick="showTab('calendar')" class="bg-green-600 text-white px-4 py-2 rounded-full shadow">📅</button>
+  <button id="reminder-btn" onclick="showTab('reminder')" class="bg-gray-300 px-4 py-2 rounded-full shadow">⏰</button>
+</div>
+  </section>
+
+  <!-- Calendar Tab -->
+  <div id="calendar-tab" class="px-6">
+    <div class="bg-white rounded-xl shadow p-4">
+      <h3 class="text-center font-semibold mb-2">JULY 2025</h3>
+      <div class="grid grid-cols-7 gap-2 text-center text-sm text-gray-700" id="calendar-days">
+  <!-- JS akan generate tanggal di sini -->
+</div>
+
+      <div class="mt-6 text-center text-sm font-semibold">
+        BRUSH YOUR TEETH TODAY <br />
+        <div class="flex justify-center gap-6 mt-2">
+          <div class="flex items-center gap-2 cursor-pointer" onclick="toggleBrush('morning')">
+            <div id="morning-check" class="w-4 h-4 border rounded-full border-green-500 flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-green-500 hidden"></div>
+            </div>
+            <span class="text-green-600">morning brush</span>
+          </div>
+          <div class="flex items-center gap-2 cursor-pointer" onclick="toggleBrush('night')">
+            <div id="night-check" class="w-4 h-4 border rounded-full border-red-500 flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-red-500 hidden"></div>
+            </div>
+            <span class="text-red-600">night brush</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reminder Tab -->
+  <div id="reminder-tab" class="px-6 hidden">
+    <div class="bg-white rounded-xl shadow p-4">
+      <h3 class="text-center font-semibold mb-4">Set Reminder</h3>
+      <div class="flex justify-center">
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" class="sr-only peer" />
+          <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:bg-green-500 transition-all"></div>
+          <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full peer-checked:translate-x-full transition-all"></div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Nav -->
+  <footer class="fixed bottom-0 inset-x-0 bg-white shadow-inner py-3 px-6 flex justify-around text-gray-700 rounded-t-xl">
+    <div class="flex flex-col items-center cursor-pointer" onclick="window.location.href='homepage.html'">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+      </svg>
+      <span class="text-xs">Home</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <span class="text-xs">Menu</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A4 4 0 018 20h8a4 4 0 013.121-2.196M15 11a4 4 0 10-8 0 4 4 0 008 0z" />
+      </svg>
+      <span class="text-xs">Profile</span>
+    </div>
+  </footer>
+
+  <script src="js/calendar.js"></script>
+</body>
+</html>

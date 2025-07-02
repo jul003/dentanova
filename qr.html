@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toothman Adventure - QR Scanner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body class="bg-gradient-to-b from-blue-900 to-indigo-900 text-white font-sans flex flex-col min-h-screen justify-between">
+
+  <!-- HEADER -->
+  <header class="text-center py-6">
+    <h1 class="text-3xl font-bold">Toothman QR Scanner</h1>
+    <p class="text-sm text-blue-200 mt-2">Point your camera at a QR Code</p>
+  </header>
+
+  <!-- QR SCANNER -->
+  <main class="flex-grow flex flex-col items-center justify-center px-4">
+    <div id="qr-reader" class="w-full max-w-xs bg-white rounded-lg shadow-md p-2"></div>
+    <div id="qr-result" class="mt-4 text-green-300 text-sm font-mono"></div>
+  </main>
+
+  <!-- BOTTOM NAVIGATION -->
+  <footer class="bg-white bg-opacity-10 backdrop-blur-md text-white py-3 px-6 flex justify-around rounded-t-2xl">
+    <a href="homepage.html" class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+      </svg>
+      <span class="text-xs">Home</span>
+    </a>
+    <a href="index.html#menu-section" class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <span class="text-xs">Menu</span>
+    </a>
+    <a href="#" class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A4 4 0 018 20h8a4 4 0 013.121-2.196M15 11a4 4 0 10-8 0 4 4 0 008 0z" />
+      </svg>
+      <span class="text-xs">Profile</span>
+    </a>
+  </footer>
+
+  <!-- QR SCRIPT -->
+  <script>
+    const qrReader = new Html5Qrcode("qr-reader");
+    qrReader.start(
+      { facingMode: "environment" },
+      {
+        fps: 10,
+        qrbox: { width: 200, height: 200 },
+      },
+      (decodedText) => {
+        document.getElementById("qr-result").innerText = `Scanned: ${decodedText}`;
+        qrReader.stop(); // Optional: stop after successful scan
+      },
+      (errorMessage) => {
+        // optional: handle scan errors here
+      }
+    );
+  </script>
+</body>
+</html>

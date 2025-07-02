@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toothquest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-blue-100 font-sans min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <div class="bg-green-500 text-white px-4 py-3 flex items-center justify-between relative shadow">
+        <!-- RETURN Button -->
+        <a href="homepage.html" class="text-sm font-bold bg-white text-green-600 px-3 py-1 rounded z-10">← RETURN</a>
+
+        <!-- Title centered absolutely -->
+        <h1 class="absolute left-1/2 transform -translate-x-1/2 font-bold text-lg uppercase">Toothquest</h1>
+
+        <!-- Profile Icon -->
+        <div
+            class="w-7 h-7 rounded-full bg-white flex items-center justify-center text-green-600 font-bold text-sm z-10">
+            👤
+        </div>
+    </div>
+
+
+    <!-- Content -->
+    <div class="flex-grow flex items-center justify-center px-4">
+        <div class="bg-blue-500 text-white rounded-2xl p-6 sm:p-10 w-full max-w-md text-center shadow-lg">
+            <h2 class="text-2xl font-bold mb-2">tooth-smart skills!</h2>
+            <p class="text-base sm:text-lg mb-6">Are you ready to become a Dental Hero?</p>
+            <img src="img/toothquiz.png" alt="Tooth Hero"
+                class="w-60 h-60 sm:w-72 sm:h-72 mx-auto mb-6 object-contain" />
+            <a href="startquiz.html"
+                class="bg-cyan-400 hover:bg-cyan-500 text-white px-6 py-3 rounded-full font-semibold text-lg transition">
+                Start Quiz
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

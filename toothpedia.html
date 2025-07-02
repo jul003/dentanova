@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Toothpedia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    input:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body class="bg-blue-100 font-sans">
+
+  <!-- Header -->
+  <div class="bg-green-500 text-white px-4 py-3 relative shadow flex items-center justify-between">
+  <a href="homepage.html" class="text-sm font-bold bg-white text-green-600 px-3 py-1 rounded z-10">← RETURN</a>
+
+  <!-- CENTERED TITLE -->
+  <h1 class="absolute left-1/2 transform -translate-x-1/2 font-bold text-lg">Toothpedia</h1>
+
+  <div class="w-6 h-6 rounded-full bg-white flex items-center justify-center text-green-600 font-bold z-10">👤</div>
+</div>
+
+
+  <!-- Container -->
+  <div class="max-w-xl mx-auto mt-4 px-4">
+    <!-- Title -->
+    <h2 class="text-xl font-bold text-center mb-4">Toothpedia</h2>
+
+    <!-- Search Bar -->
+    <div class="bg-white rounded-full px-4 py-2 flex items-center shadow mb-6">
+      <svg class="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/>
+      </svg>
+      <input type="text" placeholder="dental health" class="flex-1 bg-transparent text-sm" />
+    </div>
+
+    <!-- Articles List -->
+    <div class="flex flex-col gap-4 pb-10">
+      <!-- Article 1 -->
+<div class="flex items-center bg-white p-4 rounded-xl shadow">
+  <img src="img/tooth1.png" alt="Brushing Tips" class="w-28 h-28 rounded-xl object-cover mr-4 shadow-sm" />
+  <div class="flex-1">
+    <h3 class="font-bold text-[15px] leading-tight">Teeth Brushing Tips</h3>
+    <p class="text-sm text-gray-600 leading-snug">How to brush your teeth effectively and correctly</p>
+  </div>
+</div>
+
+<!-- Article 2 -->
+<div class="flex items-center bg-white p-4 rounded-xl shadow">
+  <img src="img/tooth2.png" alt="Dental Floss" class="w-28 h-28 rounded-xl object-cover mr-4 shadow-sm" />
+  <div class="flex-1">
+    <h3 class="font-bold text-[15px] leading-tight">The Importance of Dental Floss</h3>
+    <p class="text-sm text-gray-600 leading-snug">Benefits of using dental floss</p>
+  </div>
+</div>
+
+<!-- Article 3 -->
+<div class="flex items-center bg-white p-4 rounded-xl shadow">
+  <img src="img/tooth3.png" alt="Choosing Toothpaste" class="w-28 h-28 rounded-xl object-cover mr-4 shadow-sm" />
+  <div class="flex-1">
+    <h3 class="font-bold text-[15px] leading-tight">Choosing Toothpaste</h3>
+    <p class="text-sm text-gray-600 leading-snug">Guide to choosing the right toothpaste</p>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</body>
+</html>

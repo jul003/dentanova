@@ -4,26 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Toothman Adventure - QR Scanner</title>
-  
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- QR Code Scanner -->
   <script src="https://unpkg.com/html5-qrcode"></script>
-  
+
   <!-- 3D Model Viewer -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
-    #qr-reader__dashboard_section_csr video {
-      object-fit: cover;
+    #qr-reader__dashboard_section_csr,
+    #qr-reader__dashboard_section_swaplink {
+      display: none !important; /* hide unused buttons */
+    }
+
+    #qr-reader__dashboard {
+      background: transparent !important;
+      padding: 0 !important;
+    }
+
+    #qr-reader__camera_feed {
       width: 100% !important;
       height: 100% !important;
+      object-fit: cover !important;
+    }
+
+    #qr-reader {
+      width: 100%;
+      height: 100%;
+      max-width: none !important;
+      aspect-ratio: auto !important;
     }
   </style>
 </head>
 
-<body class="bg-gradient-to-b from-blue-900 to-indigo-900 text-white font-sans flex flex-col min-h-screen justify-between">
+<body class="bg-gradient-to-b from-blue-900 to-indigo-900 text-white font-sans flex flex-col min-h-screen">
 
   <!-- HEADER -->
   <header class="text-center py-6">
@@ -32,8 +49,8 @@
   </header>
 
   <!-- MAIN SCANNER -->
-  <main class="flex-grow flex flex-col items-center justify-center px-4">
-    <div id="qr-reader" class="w-full max-w-sm h-[70vh] rounded-xl overflow-hidden shadow-lg bg-black"></div>
+  <main class="flex-grow flex flex-col items-center justify-center p-0 m-0">
+    <div id="qr-reader" class="w-full h-[calc(100vh-180px)] bg-black overflow-hidden rounded-lg shadow-lg"></div>
     <div id="qr-result" class="mt-4 text-green-300 text-sm font-mono"></div>
 
     <!-- Model Viewer -->
@@ -83,7 +100,7 @@
       {
         fps: 10,
         qrbox: (w, h) => {
-          const edge = Math.min(w, h) * 0.8;
+          const edge = Math.min(w, h) * 0.9;
           return { width: edge, height: edge };
         },
       },
@@ -100,7 +117,7 @@
         qrReader.stop();
       },
       (err) => {
-        // Silent error (can be logged if needed)
+        // Silent error
       }
     );
   </script>

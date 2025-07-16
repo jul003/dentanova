@@ -4,8 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Toothman Adventure - QR Scanner</title>
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- QR Code Scanner -->
   <script src="https://unpkg.com/html5-qrcode"></script>
+  
+  <!-- 3D Model Viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
   <style>
     #qr-reader__dashboard_section_csr video {
       object-fit: cover;
@@ -14,6 +22,7 @@
     }
   </style>
 </head>
+
 <body class="bg-gradient-to-b from-blue-900 to-indigo-900 text-white font-sans flex flex-col min-h-screen justify-between">
 
   <!-- HEADER -->
@@ -22,13 +31,26 @@
     <p class="text-sm text-blue-200 mt-2">Point your camera at a QR Code</p>
   </header>
 
-  <!-- QR SCANNER -->
-<main class="flex-grow flex flex-col items-center justify-center px-4">
-  <div id="qr-reader" class="w-full max-w-sm h-[70vh] rounded-xl overflow-hidden shadow-lg bg-black"></div>
-  <div id="qr-result" class="mt-4 text-green-300 text-sm font-mono"></div>
-</main>
+  <!-- MAIN SCANNER -->
+  <main class="flex-grow flex flex-col items-center justify-center px-4">
+    <div id="qr-reader" class="w-full max-w-sm h-[70vh] rounded-xl overflow-hidden shadow-lg bg-black"></div>
+    <div id="qr-result" class="mt-4 text-green-300 text-sm font-mono"></div>
 
-  <!-- BOTTOM NAVIGATION -->
+    <!-- Model Viewer -->
+    <model-viewer
+      id="ar-viewer"
+      class="mt-6 hidden"
+      src=""
+      alt="3D Model"
+      auto-rotate
+      camera-controls
+      ar
+      ar-modes="scene-viewer webxr quick-look"
+      style="width: 100%; max-width: 400px; height: 400px;"
+    ></model-viewer>
+  </main>
+
+  <!-- FOOTER NAV -->
   <footer class="bg-white bg-opacity-10 backdrop-blur-md text-white py-3 px-6 flex justify-around rounded-t-2xl">
     <a href="homepage.html" class="flex flex-col items-center">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -50,28 +72,38 @@
     </a>
   </footer>
 
-  <!-- QR SCRIPT -->
+  <!-- SCRIPT QR SCANNER -->
   <script>
-  const qrReader = new Html5Qrcode("qr-reader");
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-const cameraFacing = isMobile ? { facingMode: "environment" } : { facingMode: "user" };
+    const qrReader = new Html5Qrcode("qr-reader");
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const cameraFacing = isMobile ? { facingMode: "environment" } : { facingMode: "user" };
 
-qrReader.start(
-  cameraFacing,
-  {
-    fps: 10,
-    qrbox: (w, h) => {
-      const edge = Math.min(w, h) * 0.8;
-      return { width: edge, height: edge };
-    },
-  },
-  (decodedText) => {
-    document.getElementById("qr-result").innerText = `Scanned: ${decodedText}`;
-    qrReader.stop();
-  },
-  (err) => {}
-);
+    qrReader.start(
+      cameraFacing,
+      {
+        fps: 10,
+        qrbox: (w, h) => {
+          const edge = Math.min(w, h) * 0.8;
+          return { width: edge, height: edge };
+        },
+      },
+      (decodedText) => {
+        document.getElementById("qr-result").innerText = `Scanned: ${decodedText}`;
 
-</script>
+        // Tampilkan AR model jika hasil QR mengarah ke file .glb
+        if (decodedText.endsWith(".glb")) {
+          const modelViewer = document.getElementById("ar-viewer");
+          modelViewer.src = decodedText;
+          modelViewer.classList.remove("hidden");
+        }
+
+        qrReader.stop();
+      },
+      (err) => {
+        // Silent error (can be logged if needed)
+      }
+    );
+  </script>
+
 </body>
 </html>

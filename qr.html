@@ -105,17 +105,30 @@
         },
       },
       (decodedText) => {
-        document.getElementById("qr-result").innerText = `Scanned: ${decodedText}`;
+  document.getElementById("qr-result").innerText = `Scanned: ${decodedText}`;
 
-        // Tampilkan AR model jika hasil QR mengarah ke file .glb
-        if (decodedText.endsWith(".glb")) {
-          const modelViewer = document.getElementById("ar-viewer");
-          modelViewer.src = decodedText;
-          modelViewer.classList.remove("hidden");
-        }
+  if (decodedText.endsWith(".glb")) {
+    // Tampilkan model
+    const modelViewer = document.getElementById("ar-viewer");
+    modelViewer.src = decodedText;
+    modelViewer.classList.remove("hidden");
 
-        qrReader.stop();
-      },
+    // Sembunyikan elemen lainnya
+    document.getElementById("qr-reader").style.display = "none";
+    document.querySelector("header").style.display = "none";
+    document.querySelector("footer").style.display = "none";
+    document.getElementById("qr-result").style.display = "none";
+    document.querySelector("main").classList.remove("justify-center");
+
+    // Fullscreen style (opsional)
+    modelViewer.style.width = "100vw";
+    modelViewer.style.height = "100vh";
+    modelViewer.style.maxWidth = "none";
+  }
+
+  qrReader.stop();
+},
+
       (err) => {
         // Silent error
       }
